@@ -554,6 +554,9 @@ public:
     template<typename X>
     Gnuplot& plot_x(const X& x, const std::string &title = "");
 
+    template<typename X>
+    Gnuplot& plot_x(const std::vector< X > &x, const std::vector<std::string> &title);
+    
 
     /// plot x,y pairs: x y
     ///   from file
@@ -802,6 +805,63 @@ Gnuplot& Gnuplot::plot_x(const X& x, const std::string &title)
 
     plotfile_x(name, 1, title);
 
+    return *this;
+}
+
+template<typename X>
+Gnuplot& Gnuplot::plot_x(const std::vector< X > &x, const std::vector<std::string> &title)
+{
+    if (x.size() == 0) // no check
+    {
+        throw GnuplotException("std::vector too small");
+        return *this;
+    }
+    
+    
+    
+    int column = 1;
+    std::ostringstream cmdstr;
+    //
+    // command to be sent to gnuplot
+    //
+    if (nplots > 0  &&  two_dim == true)
+        cmdstr << "replot ";
+    else
+        cmdstr << "plot ";
+    
+    
+    for (unsigned int k = 0; k < x.size(); k++){
+        cmdstr << "\'-\' using " << column;
+        if (title.size() == 0 || title[k] == "")
+            cmdstr << " notitle ";
+        else
+            cmdstr << " title \"" << title[k] << "\" ";
+        
+        if(smooth == "")
+            cmdstr << "with " << pstyle;
+        else
+            cmdstr << "smooth " << smooth;
+        
+        if (k != x.size()-1) cmdstr << ",";
+    }
+    
+    cmdstr << "\n";
+    for (unsigned int k = 0; k < x.size(); k++){
+        typename X::const_iterator it;
+        it = x[k].begin();
+        for (; it != x[k].end(); it++)
+            cmdstr << (*it) << std::endl;
+        cmdstr << "e" << std::endl;
+    }
+    
+    //
+    // Do the actual plot
+    //
+    cmd(cmdstr.str()); //nplots++; two_dim = true;  already in cmd();
+    
+    
+    
+    
     return *this;
 }
 
