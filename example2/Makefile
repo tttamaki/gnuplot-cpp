@@ -10,7 +10,7 @@ CC=g++
 
 all:  dataplot
 
-dataplot.o:	dataplot.cpp
+dataplot.o:	dataplot.cpp dataplot.h
 
 dataplot: $(EXAMPLE)
 	$(CC) -o $@ $(CFLAGS) $(EXAMPLE) $(LIBS)

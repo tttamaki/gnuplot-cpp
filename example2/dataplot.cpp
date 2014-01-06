@@ -16,7 +16,7 @@ int main ( int argc, char **argv )
     
 
 
-    multiPlotGnuplot g1(20, 2), g2(20, 3); // (length, plots)
+    multiPlotGnuplot<float> g1(20, 2), g2(20, 3); // (length, plots)
     g1.set_GNUPlotPath("/opt/local/bin");
     g2.set_GNUPlotPath("/opt/local/bin");
 
@@ -30,7 +30,7 @@ int main ( int argc, char **argv )
     }
     
     
-    for (int x = 0; x < 100; x++) {
+    for (int x = 0; x < 10; x++) {
         
         
         std::vector<float> data1, data2;
@@ -43,6 +43,9 @@ int main ( int argc, char **argv )
         sleep(1);
         
     }
+    
+    std::cout << "data1 " << std::endl << g1 << std::endl;
+    std::cout << "data2 " << std::endl << g2 << std::endl;
     
     return 0;
 }
