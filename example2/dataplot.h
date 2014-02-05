@@ -33,7 +33,8 @@ public:
         length = _length;
     };
     void setDim(size_t _dim){
-        if(dim != _dim){
+        assert(_dim > 0);
+//        if(dim != _dim){
             dim = _dim;
             t.clear();
             t.resize(dim);
@@ -41,7 +42,7 @@ public:
             t_all.resize(dim);
             title.clear();
             title.resize(dim);
-        }
+//        }
     }
     size_t getDim() const { return dim;};
     const std::vector< std::vector<T> >& getAllData() const { return &t_all; };
@@ -55,7 +56,7 @@ public:
     
     void
     setTitles(const std::vector< std::string > &t){
-        assert ( title.size() == dim);
+        assert ( t.size() == dim );
         std::copy (t.begin(), t.end(), title.begin() );
     }
     

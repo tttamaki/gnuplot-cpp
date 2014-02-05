@@ -16,7 +16,7 @@ int main ( int argc, char **argv )
     
 
 
-    multiPlotGnuplot<float> g1(20, 2), g2(20, 3); // (length, plots)
+    multiPlotGnuplot<double> g1(20, 2), g2(20, 3); // (length, plots)
     g1.set_GNUPlotPath("/opt/local/bin");
     g2.set_GNUPlotPath("/opt/local/bin");
 
@@ -33,7 +33,7 @@ int main ( int argc, char **argv )
     for (int x = 0; x < 10; x++) {
         
         
-        std::vector<float> data1, data2;
+        std::vector<double> data1, data2;
         data1 = boost::assign::list_of( sin(x) ) ( cos(x) ) ;
         data2 = boost::assign::list_of( x ) ( 2*x ) ( 3*x+2 ) ;
         
