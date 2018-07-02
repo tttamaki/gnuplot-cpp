@@ -434,9 +434,9 @@ public:
 
 
     /// set x axis label
-    Gnuplot& set_ylabel(const std::string &label = "x");
+    Gnuplot& set_xlabel(const std::string &label = "x");
     /// set y axis label
-    Gnuplot& set_xlabel(const std::string &label = "y");
+    Gnuplot& set_ylabel(const std::string &label = "y");
     /// set z axis label
     Gnuplot& set_zlabel(const std::string &label = "z");
 
