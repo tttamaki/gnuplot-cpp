@@ -106,7 +106,7 @@ private:
     ///
     /// \return <-- void
     // ---------------------------------------------------
-    void           init();
+    void           init(const bool& disable_showonscreen = false);
     // ---------------------------------------------------
     ///\brief creates tmpfile and returns its name
     ///
@@ -174,14 +174,16 @@ public:
 
 
     ///\brief set a style during construction
-    Gnuplot(const std::string &style = "points");
+    Gnuplot(const std::string &style = "points",
+            const bool& disable_showonscreen = false);
 
     /// plot a single std::vector at one go
     Gnuplot(const std::vector<double> &x,
             const std::string &title = "",
             const std::string &style = "points",
             const std::string &labelx = "x",
-            const std::string &labely = "y");
+            const std::string &labely = "y",
+            const bool& disable_showonscreen = false);
 
     /// plot pairs std::vector at one go
     Gnuplot(const std::vector<double> &x,
@@ -189,7 +191,8 @@ public:
             const std::string &title = "",
             const std::string &style = "points",
             const std::string &labelx = "x",
-            const std::string &labely = "y");
+            const std::string &labely = "y",
+            const bool& disable_showonscreen = false);
 
     /// plot triples std::vector at one go
     Gnuplot(const std::vector<double> &x,
@@ -199,7 +202,8 @@ public:
             const std::string &style = "points",
             const std::string &labelx = "x",
             const std::string &labely = "y",
-            const std::string &labelz = "z");
+            const std::string &labelz = "z",
+            const bool& disable_showonscreen = false);
 
     /// destructor: needed to delete temporary files
     ~Gnuplot();
@@ -699,11 +703,12 @@ std::string Gnuplot::terminal_std = "aqua";
 //
 // constructor: set a style during construction
 //
-inline Gnuplot::Gnuplot(const std::string &style)
+inline Gnuplot::Gnuplot(const std::string &style,
+    const bool& disable_showonscreen)
     :gnucmd(NULL) ,valid(false) ,two_dim(false) ,nplots(0)
 
 {
-    init();
+    init(disable_showonscreen);
     set_style(style);
 }
 
@@ -715,10 +720,11 @@ inline Gnuplot::Gnuplot(const std::vector<double> &x,
                         const std::string &title,
                         const std::string &style,
                         const std::string &labelx,
-                        const std::string &labely)
+                        const std::string &labely,
+                        const bool& disable_showonscreen)
     :gnucmd(NULL) ,valid(false) ,two_dim(false) ,nplots(0)
 {
-    init();
+    init(disable_showonscreen);
 
     set_style(style);
     set_xlabel(labelx);
@@ -737,10 +743,11 @@ inline Gnuplot::Gnuplot(const std::vector<double> &x,
                         const std::string &title,
                         const std::string &style,
                         const std::string &labelx,
-                        const std::string &labely)
+                        const std::string &labely,
+                        const bool& disable_showonscreen)
     :gnucmd(NULL) ,valid(false) ,two_dim(false) ,nplots(0)
 {
-    init();
+    init(disable_showonscreen);
 
     set_style(style);
     set_xlabel(labelx);
@@ -761,10 +768,11 @@ inline Gnuplot::Gnuplot(const std::vector<double> &x,
                         const std::string &style,
                         const std::string &labelx,
                         const std::string &labely,
-                        const std::string &labelz)
+                        const std::string &labelz,
+                        const bool& disable_showonscreen)
     :gnucmd(NULL) ,valid(false) ,two_dim(false) ,nplots(0)
 {
-    init();
+    init(disable_showonscreen);
 
     set_style(style);
     set_xlabel(labelx);
@@ -1835,7 +1843,7 @@ Gnuplot& Gnuplot::cmd(const std::string &cmdstr)
 //
 // Opens up a gnuplot session, ready to receive commands
 //
-void Gnuplot::init()
+void Gnuplot::init(const bool& disable_showonscreen)
 {
     // char * getenv ( const char * name );  get value of environment variable
     // Retrieves a C string containing the value of the environment variable
@@ -1888,8 +1896,11 @@ void Gnuplot::init()
     valid = true;
     smooth = "";
 
-    //set terminal type
-    showonscreen();
+    if ( false == disable_showonscreen )
+    {
+      //set terminal type
+      showonscreen();
+    }
 
     return;
 }
