@@ -6,7 +6,8 @@
 //             or set Gnuplot path with: Gnuplot::set_GNUPlotPath(const std::string &path);
 
 //HHG TEST - K 
-//HHG TEST - A 
+//HHG TEST - A //HHG TEST - A 
+// TEST PARA ALONSO
 //HHG TEST - D!
 //HHG TEST - C
 #include <iostream>
