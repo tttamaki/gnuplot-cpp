@@ -7,6 +7,7 @@
 
 //HHG TEST - A 
 //HHG TEST - B 
+//HHG TEST - C
 #include <iostream>
 #include "gnuplot_i.hpp" //Gnuplot class handles POSIX-Pipe-communikation with Gnuplot
 
