@@ -5,8 +5,9 @@
 // * for Windows: set Path-Variable for Gnuplot path (e.g. C:/program files/gnuplot/bin)
 //             or set Gnuplot path with: Gnuplot::set_GNUPlotPath(const std::string &path);
 
+//HHG TEST - K 
 //HHG TEST - A 
-//HHG TEST - B 
+//HHG TEST - D!
 //HHG TEST - C
 #include <iostream>
 #include "gnuplot_i.hpp" //Gnuplot class handles POSIX-Pipe-communikation with Gnuplot
