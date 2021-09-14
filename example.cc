@@ -6,7 +6,7 @@
 //             or set Gnuplot path with: Gnuplot::set_GNUPlotPath(const std::string &path);
 
 //HHG TEST - A 
-
+// HHG TEST GIT SUPER COOL COMMENT
 #include <iostream>
 #include "gnuplot_i.hpp" //Gnuplot class handles POSIX-Pipe-communikation with Gnuplot
 
